@@ -3,25 +3,32 @@
     font-family: Arial, Helvetica, sans-serif;
     background-color: azure;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
+.main-section > p {
+    margin-top: 50px;
+}
+
 .container {
-    border: 10px solid;
-    border-radius: 8px;
+    border-radius: 10px;
+    border: 2px solid;
     display: grid;
     grid-template-columns: repeat(4, 100px);
     grid-template-rows: minmax(100px, auto) repeat(5, 85px);
     gap: 2px;
-    background-color: black;
+    background-color: rgb(95, 190, 190);
+    padding: 15px;
 }
 
 .display {
     display: flex;
     border: 2px solid;
+    border-radius: 5px;
     grid-column: 1 / -1;
-    background-color: lightgray;
+    background-color: lightcyan;
     justify-content: flex-end;
     align-items: center;
     font-size: 72px;
@@ -41,7 +48,7 @@
 }
 
 .operator {
-    background-color: orange;
+    background-color: rgb(250, 182, 54);
     font-size: 24px;
 }
 
@@ -50,8 +57,8 @@
     background-color: rgb(234, 227, 227);
 }
 
+.all-clear,
 .clear,
-.sign,
 .percentage {
-    background-color: rgb(55, 190, 190);
+    background-color: rgb(53, 156, 184);
 }
