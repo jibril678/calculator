@@ -31,7 +31,7 @@
     background-color: lightcyan;
     justify-content: flex-end;
     align-items: center;
-    font-size: 72px;
+    font-size: 68px;
     padding: 5px;
 }
 
@@ -60,5 +60,5 @@
 .all-clear,
 .clear,
 .percentage {
-    background-color: rgb(53, 156, 184);
+    background-color: rgb(90, 141, 212);
 }
