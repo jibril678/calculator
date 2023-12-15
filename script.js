@@ -11,6 +11,7 @@ let operandA = []
 let operandB = []
 let operator = []
 let currentNumber
+let displayResult
 
 // Functions 
 function clearDisplay () {
@@ -48,13 +49,13 @@ clearButton.addEventListener('click', () => {
     if (currentNumber == operandA) {
         operandA.pop()
         displayOutput.textContent = operandA.join('')
-        if (operandA.length === 0) {
+        if (operandA.length === 0 || displayOutput.textContent == displayResult) {
             clearDisplay()
         }
     } else if (currentNumber == operandB) {
         operandB.pop()
         displayOutput.textContent = operandB.join('')
-        if (operandB.length === 0) {
+        if (operandB.length === 0 || displayOutput.textContent == displayResult) {
             clearDisplay()
         }
     }
@@ -101,10 +102,9 @@ operatorButtons.forEach(element => {
 })
 
 equalsButton.addEventListener('click', () => {
-    let result = calculate(operandA, operandB, operator).toFixed(10)
-    console.log(result)
-    result = parseFloat(result)
-    displayOutput.textContent = result
+    displayResult = calculate(operandA, operandB, operator).toFixed(10)
+    displayResult = parseFloat(displayResult)
+    displayOutput.textContent = displayResult
 })
 
 // Add NumberA to top of display 
