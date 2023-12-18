@@ -14,6 +14,7 @@ const clearButton = document.querySelector('.clear')
 const equalsButton = document.querySelector('.equals')
 const displayOutput = document.querySelector('.display')
 
+// On Page Load
 displayOutput.textContent = displayResult
 
 
@@ -83,10 +84,6 @@ operandButtons.forEach(element => {
             clearDisplay()
             equalsClicked = false
         }
-        console.log('Number A:', operandA)
-        console.log('Operator:', operator)
-        console.log('Number B:', operandB)
-        console.log('Current Number:', currentNumber)
         if (currentNumber === operandA) {
             operandA.push(element.value)
             displayOutput.textContent = operandA.join('')
@@ -119,15 +116,15 @@ operatorButtons.forEach(element => {
 
 equalsButton.addEventListener('click', () => {
     equalsOperation()
-    equalsClicked = true
-    console.log('A:', operandA)
-    console.log('Operator:', operator)
-    console.log('B:', operandB)
-}
+    equalsClicked = true 
+    }
 )
 
 decimalButton.addEventListener('click', () => {
-    if(currentNumber === operandA) {
+    if (equalsClicked) {
+        clearDisplay()
+        equalsClicked = false
+    }    if(currentNumber === operandA) {
         if (!operandA.includes('.')) {
             if (operandA.length < 1) {
             operandA.push('0', '.')
