@@ -100,7 +100,7 @@ operandButtons.forEach(element => {
 operatorButtons.forEach(element => {
     element.addEventListener('click', () => {
         equalsClicked = false
-        if (operandA.length > 0 && operandB.length > 0) {
+        if (operandA.length > 0 && operandB.length > 0 || operandA.length < 1 && operandB.length > 0) {
             equalsOperation() 
         }
         currentNumber = operandB
