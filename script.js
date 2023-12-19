@@ -63,7 +63,7 @@ function equalsOperation () {
     currentOutput.textContent = displayResult
     operandA = displayResult.toString().split('')
     currentOperand = operandA
-    previousOutput.textContent = previousNumber + ' ' + operator.join('') + ' ' + currentNumber + ' ='
+    previousOutput.textContent = `${previousNumber} ${operator} ${currentNumber} =`
 }
 
 // Event Listeners
@@ -117,7 +117,8 @@ operandButtons.forEach(element => {
         } else if (currentOperand === operandB) {
             operandB.push(element.value)
             currentOutput.textContent = operandB.join('')
-            previousOutput.textContent = operandA.join('') + ' ' + operator.join('')
+            previousOutput.textContent = `${operandA.join('')} ${operator}`
+
         }
     })
 });
@@ -131,11 +132,13 @@ operatorButtons.forEach(element => {
         currentOperand = operandB
         if(operator.length > 0) {
             operator[0] = element.value
-            previousOutput.textContent = operandA.join('') + ' ' + operator.join('')
+            previousOutput.textContent = `${operandA.join('')} ${operator}`
+
         } 
         else {
             operator.push(element.value)}
-            previousOutput.textContent = operandA.join('') + ' ' + operator.join('')
+            previousOutput.textContent = `${operandA.join('')} ${operator}`
+
     })
 })
 
