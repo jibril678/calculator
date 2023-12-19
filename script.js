@@ -73,7 +73,7 @@ allClearButton.addEventListener('click', () => {
 
 percentageButton.addEventListener('click', () => {
     let percentageNumber = Number(currentOperand.join(''))
-        percentageNumber = divide(percentageNumber, 100).toFixed(2)
+        percentageNumber = Number(divide(percentageNumber, 100).toFixed(3))
         if (currentOperand == operandA) {
             operandA = []
             operandA.push(percentageNumber)

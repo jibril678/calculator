@@ -1,25 +1,29 @@
 .main-section {
     height: 95vh;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: monospace;
     background-color: azure;
     display: flex;
+    gap: 25px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.main-section > p {
+.footer {
     margin-top: 50px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
 .container {
+    font-family: monospace;
     border-radius: 10px;
     border: 2px solid;
     display: grid;
     grid-template-columns: repeat(4, 100px);
     grid-template-rows: minmax(100px, auto) repeat(5, 85px);
     gap: 2px;
-    background-color: rgb(95, 190, 190);
+    background-color: black;
     padding: 15px;
 }
 
@@ -31,10 +35,12 @@
     border: 2px solid;
     border-radius: 5px;
     grid-column: 1 / -1;
-    background-color: lightcyan;
-    font-size: 64px;
+    background-color: rgb(208, 208, 208);
+    font-size: 60px;
+    font-weight: bolder;
     padding: 5px;
     padding-right: 20px;
+    margin-bottom: 5px;
     word-wrap: break-word;
     word-break: break-all;
 }
@@ -48,11 +54,20 @@
 }
 
 .container > button {
+    font-family: monospace;
     font-size: 32px;
+    font-weight: bold;
+    border: 2px solid;
     border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(249, 249, 210);
+    transform: scale(0.95);
 }
 
 #zero {
@@ -61,17 +76,17 @@
 
 .operator,
 .equals {
-    background-color: rgb(250, 181, 54);
+    background-color: rgb(103, 212, 72);
     font-size: 24px;
 }
 
 .operand,
 .decimal {
-    background-color: rgb(234, 227, 227);
+    background-color: rgb(208, 208, 208);
 }
 
 .all-clear,
 .clear,
 .percentage {
-    background-color: rgb(90, 141, 212);
+    background-color: rgb(66, 185, 228);
 }
