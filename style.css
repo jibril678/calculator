@@ -25,17 +25,26 @@
 
 .display {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: end;
     border: 2px solid;
     border-radius: 5px;
     grid-column: 1 / -1;
     background-color: lightcyan;
-    justify-content: flex-end;
-    align-items: center;
     font-size: 64px;
     padding: 5px;
     padding-right: 20px;
     word-wrap: break-word;
     word-break: break-all;
+}
+
+.previous-number {
+    display: flex;
+    align-items: flex-end;
+    font-size: 30px;
+    padding: 5px;
+    text-align: center;
 }
 
 .container > button {

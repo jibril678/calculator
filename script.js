@@ -2,8 +2,10 @@
 let operandA = []
 let operandB = []
 let operator = []
+let previousNumber = ''
+let currentNumber = ''
 let displayResult = 0
-let currentNumber = operandA
+let currentOperand = operandA
 let equalsClicked = false
 const allButtons = document.querySelectorAll('buttons')
 const operandButtons = document.querySelectorAll('.operand')
@@ -13,10 +15,12 @@ const allClearButton = document.querySelector('.all-clear')
 const clearButton = document.querySelector('.clear')
 const equalsButton = document.querySelector('.equals')
 const percentageButton = document.querySelector('.percentage')
-const displayOutput = document.querySelector('.display')
+const previousOutput = document.querySelector('.previous-number')
+const currentOutput = document.querySelector('.current-number')
 
 // On Page Load
-displayOutput.textContent = displayResult
+currentOutput.textContent = displayResult
+previousOutput.textContent = previousNumber
 
 
 // Functions 
@@ -34,28 +38,32 @@ function calculate (a, b, currentOperator) {
             result = sum(a, b)
         } else if (currentOperator == "-") {
             result = subtract(a, b)
-        } else if (currentOperator == "*") {
+        } else if (currentOperator == "x") {
             result = multiply(a, b)
-        } else if (currentOperator == "/") {
+        } else if (currentOperator == "÷") {
             result = divide(a, b)
         }
     return result
 }
 
 function clearDisplay () {
-    displayOutput.textContent = 0
+    currentOutput.textContent = 0
+    previousOutput.textContent = ''
+    previousNumber = Number(operandA.join(''))
+    currentNumber = Number(operandB.join(''))
     operandA = []
     operandB = []
     operator = [operator]
-    currentNumber = operandA
+    currentOperand = operandA
 }
 
 function equalsOperation () {
-    displayResult = Number(calculate(operandA, operandB, operator).toFixed(2))
+    displayResult = Number(calculate(operandA, operandB, operator).toFixed(3))
     clearDisplay()
-    displayOutput.textContent = displayResult
+    currentOutput.textContent = displayResult
     operandA = displayResult.toString().split('')
-    currentNumber = operandA
+    currentOperand = operandA
+    previousOutput.textContent = previousNumber + ' ' + operator.join('') + ' ' + currentNumber + ' ='
 }
 
 // Event Listeners
@@ -64,34 +72,34 @@ allClearButton.addEventListener('click', () => {
 })
 
 percentageButton.addEventListener('click', () => {
-    let percentageNumber = Number(currentNumber.join(''))
+    let percentageNumber = Number(currentOperand.join(''))
         percentageNumber = divide(percentageNumber, 100).toFixed(2)
-        if (currentNumber == operandA) {
+        if (currentOperand == operandA) {
             operandA = []
             operandA.push(percentageNumber)
-            displayOutput.textContent = operandA.join('')
+            currentOutput.textContent = operandA.join('')
         } 
-        else if (currentNumber == operandB) { 
+        else if (currentOperand == operandB) { 
             operandB = []
             operandB.push(percentageNumber)
-            displayOutput.textContent = operandA.join('')
+            currentOutput.textContent = operandB.join('')
         }
 })
 
 clearButton.addEventListener('click', () => {
-    if (currentNumber == operandA) {
+    if (currentOperand == operandA) {
         operandA.pop()
-        displayOutput.textContent = operandA.join('')
-        if (operandA.length === 0 || displayOutput.textContent == displayResult) {
+        currentOutput.textContent = operandA.join('')
+        if (operandA.length === 0 || currentOutput.textContent == displayResult) {
             displayResult = 0
-            displayOutput.textContent = displayResult
+            currentOutput.textContent = displayResult
         }
-    } else if (currentNumber == operandB) {
+    } else if (currentOperand == operandB) {
         operandB.pop()
-        displayOutput.textContent = operandB.join('')
-        if (operandB.length === 0 || displayOutput.textContent == displayResult) {
+        currentOutput.textContent = operandB.join('')
+        if (operandB.length === 0 || currentOutput.textContent == displayResult) {
             displayResult = 0
-            displayOutput.textContent = displayResult      
+            currentOutput.textContent = displayResult      
         }
     }
 })
@@ -102,16 +110,15 @@ operandButtons.forEach(element => {
             clearDisplay()
             equalsClicked = false
         }
-        if (currentNumber === operandA) {
+        if (currentOperand === operandA) {
             operandA.push(element.value)
-            displayOutput.textContent = operandA.join('')
-        } else if (currentNumber === operandB) {
+            currentOutput.textContent = operandA.join('')
+            previousNumber = Number(operandA.join(''))
+        } else if (currentOperand === operandB) {
             operandB.push(element.value)
-            displayOutput.textContent = operandB.join('')
+            currentOutput.textContent = operandB.join('')
+            previousOutput.textContent = operandA.join('') + ' ' + operator.join('')
         }
-        console.log('END Number A:', operandA)
-        console.log('Operator:', operator)
-        console.log('END Number B:', operandB)
     })
 });
 
@@ -121,46 +128,45 @@ operatorButtons.forEach(element => {
         if (operandA.length > 0 && operandB.length > 0 || operandA.length < 1 && operandB.length > 0) {
             equalsOperation() 
         }
-        currentNumber = operandB
+        currentOperand = operandB
         if(operator.length > 0) {
-            operator[0] = element.value} 
+            operator[0] = element.value
+            previousOutput.textContent = operandA.join('') + ' ' + operator.join('')
+        } 
         else {
             operator.push(element.value)}
-            console.log('END Operator A:', operandA)
-            console.log('Operator:', operator)
-            console.log('END Operator B:', operandB)
+            previousOutput.textContent = operandA.join('') + ' ' + operator.join('')
     })
 })
 
 equalsButton.addEventListener('click', () => {
     equalsOperation()
     equalsClicked = true
-}
-    )
+})
 
 decimalButton.addEventListener('click', () => {
     if (equalsClicked) {
         clearDisplay()
         equalsClicked = false
-    }    if(currentNumber === operandA) {
+    }    if(currentOperand === operandA) {
         if (!operandA.includes('.')) {
             if (operandA.length < 1) {
             operandA.push('0', '.')
-            displayOutput.textContent = operandA.join('')
+            currentOutput.textContent = operandA.join('')
             } else {
                 operandA.push('.')
-                displayOutput.textContent = operandA.join('')
+                currentOutput.textContent = operandA.join('')
                 }
             }
         }
-        else if(currentNumber === operandB) {
+        else if(currentOperand === operandB) {
             if (!operandB.includes('.')) {
                 if (operandB.length < 1) {
                 operandB.push('0', '.')
-                displayOutput.textContent = operandB.join('')
+                currentOutput.textContent = operandB.join('')
                 } else {
                     operandB.push('.')
-                    displayOutput.textContent = operandB.join('')
+                    currentOutput.textContent = operandB.join('')
                     }  
                 }
             }
