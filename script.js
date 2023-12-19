@@ -12,6 +12,7 @@ const decimalButton = document.querySelector('.decimal')
 const allClearButton = document.querySelector('.all-clear')
 const clearButton = document.querySelector('.clear')
 const equalsButton = document.querySelector('.equals')
+const percentageButton = document.querySelector('.percentage')
 const displayOutput = document.querySelector('.display')
 
 // On Page Load
@@ -62,18 +63,35 @@ allClearButton.addEventListener('click', () => {
     clearDisplay()
 })
 
+percentageButton.addEventListener('click', () => {
+    let percentageNumber = Number(currentNumber.join(''))
+        percentageNumber = divide(percentageNumber, 100).toFixed(2)
+        if (currentNumber == operandA) {
+            operandA = []
+            operandA.push(percentageNumber)
+            displayOutput.textContent = operandA.join('')
+        } 
+        else if (currentNumber == operandB) { 
+            operandB = []
+            operandB.push(percentageNumber)
+            displayOutput.textContent = operandA.join('')
+        }
+})
+
 clearButton.addEventListener('click', () => {
     if (currentNumber == operandA) {
         operandA.pop()
         displayOutput.textContent = operandA.join('')
         if (operandA.length === 0 || displayOutput.textContent == displayResult) {
-            clearDisplay()
+            displayResult = 0
+            displayOutput.textContent = displayResult
         }
     } else if (currentNumber == operandB) {
         operandB.pop()
         displayOutput.textContent = operandB.join('')
         if (operandB.length === 0 || displayOutput.textContent == displayResult) {
-            clearDisplay()
+            displayResult = 0
+            displayOutput.textContent = displayResult      
         }
     }
 })
@@ -116,9 +134,9 @@ operatorButtons.forEach(element => {
 
 equalsButton.addEventListener('click', () => {
     equalsOperation()
-    equalsClicked = true 
-    }
-)
+    equalsClicked = true
+}
+    )
 
 decimalButton.addEventListener('click', () => {
     if (equalsClicked) {
@@ -148,8 +166,3 @@ decimalButton.addEventListener('click', () => {
             }
     }      
 )
-
-
-// Add NumberA to top of display 
-// Button selection styling
-// Do final styling
