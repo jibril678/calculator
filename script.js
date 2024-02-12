@@ -79,13 +79,13 @@ if (currentOperand !== 0) {
             operandA = []
             operandA.push(percentageNumber)
             currentOutput.textContent = operandA.join('')
-            currentOperand = percentageNumber
+            currentOperand = operandA
         } 
         else if (currentOperand == operandB) { 
             operandB = []
             operandB.push(percentageNumber)
             currentOutput.textContent = operandB.join('')
-            currentOperand = percentageNumber
+            currentOperand = operandB
         }
 }})
 
